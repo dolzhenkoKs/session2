@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="user4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ProductsSale_">
+    <Key>
+      <PropertyRef Name="Код_реализации" />
+    </Key>
+    <Property Name="Код_реализации" Type="Double" Nullable="false" />
+    <Property Name="Продукция" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Наименование_агента" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Дата_реализации" Type="DateTime" Precision="3" />
+    <Property Name="Количество_продукции" Type="Double" />
+  </EntityType>
+  <EntityType Name="ProductsShort_">
+    <Key>
+      <PropertyRef Name="Код_товаров" />
+    </Key>
+    <Property Name="Код_товаров" Type="Double" Nullable="false" />
+    <Property Name="Наименование_продукции" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="C_Тип_продукции" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="C_Артикул" Type="Double" />
+    <Property Name="C_Количество_человек_для_производства" Type="Double" />
+    <Property Name="C_Номер_цеха_производства" Type="Double" />
+    <Property Name="C_Минимальная_цена_для_агента" Type="Double" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Материалы">
+    <Key>
+      <PropertyRef Name="Код_материалов" />
+    </Key>
+    <Property Name="Код_материалов" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ВозможныеПоставщики" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Поставщики">
+    <Key>
+      <PropertyRef Name="Код_поставщика" />
+    </Key>
+    <Property Name="Код_поставщика" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ИНН" Type="Int64" />
+    <Property Name="Тип" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код_сотрудника" />
+    </Key>
+    <Property Name="Код_сотрудника" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ФИО" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ДатаРождения" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ПаспортныеДанные" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="БанковскиеРеквизиты" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="НаличиеСемьи" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ПроблемыСоЗдоровьем" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ТипыПоставщиков">
+    <Key>
+      <PropertyRef Name="Код_типа" />
+    </Key>
+    <Property Name="Код_типа" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ТипыТоваров">
+    <Key>
+      <PropertyRef Name="Код_типаТовара" />
+    </Key>
+    <Property Name="Код_типаТовара" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Цех">
+    <Key>
+      <PropertyRef Name="Код_цеха" />
+    </Key>
+    <Property Name="Код_цеха" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="user4Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProductsSale_" EntityType="Self.ProductsSale_" />
+    <EntitySet Name="ProductsShort_" EntityType="Self.ProductsShort_" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Материалы" EntityType="Self.Материалы" />
+    <EntitySet Name="Поставщики" EntityType="Self.Поставщики" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="ТипыПоставщиков" EntityType="Self.ТипыПоставщиков" />
+    <EntitySet Name="ТипыТоваров" EntityType="Self.ТипыТоваров" />
+    <EntitySet Name="Цех" EntityType="Self.Цех" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(user4Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(user4Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
